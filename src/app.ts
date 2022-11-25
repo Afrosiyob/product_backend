@@ -4,6 +4,7 @@ import express, { NextFunction, Request, Response } from "express";
 
 import { connectDB, connectDBConfig } from "./core/db";
 import log from "./core/utils/log";
+import { router } from "./routes";
 
 dotenv.config();
 const app = express();
@@ -29,4 +30,5 @@ app.listen(8080, "0.0.0.0", async function () {
   log.info(`App is running at http://localhost:${8080} `);
   await connectDB();
   await connectDBConfig();
+  router(app);
 });

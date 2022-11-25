@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
 import * as mongoDB from "mongodb";
-import mongoose from "mongoose";
+import * as mongoose from "mongoose";
 
 import log from "../utils/log";
 

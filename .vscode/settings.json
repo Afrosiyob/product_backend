@@ -7,7 +7,8 @@
     "languagedetector",
     "pino",
     "stylelint",
-    "TTFB"
+    "TTFB",
+    "uuidv"
   ],
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.formatOnSave": true,
