@@ -1,10 +1,3 @@
 {
-  "app": {
-    "PORT": 8080,
-    "LOCAL_ADDRESS": "0.0.0.0",
-    "API": "url"
-  },
-  "db": {
-    "URL": "mongodb+srv://afrosiyob:eh7wroWf1oETz2i3@product.flhb5wn.mongodb.net/?retryWrites=true&w=majority"
-  }
+  "PORT": 8080
 }

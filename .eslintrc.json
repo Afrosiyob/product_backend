@@ -1,15 +1,17 @@
 {
   "env": {
-    "browser": true,
     "es2021": true,
-    "jest": true
+    "jest": true,
+    "node": true
   },
   "extends": [
     "standard-with-typescript",
     // other extends
     "plugin:import/typescript",
+    "eslint:recommended",
     "prettier"
   ],
+
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
