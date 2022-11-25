@@ -1,0 +1,177 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": [
+    "standard-with-typescript",
+    // other extends
+    "plugin:import/typescript",
+    "prettier"
+  ],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "unused-imports",
+    "simple-import-sort",
+    "@typescript-eslint",
+    "unused-imports",
+    // prettier must be last
+    "prettier"
+  ],
+  "rules": {
+    "quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
+
+    "@typescript-eslint/quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "no-console": 1,
+    "prettier/prettier": 2, // Means error
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "camelcase": "error",
+    "spaced-comment": "error",
+    "no-duplicate-imports": "error",
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/no-var-requires": 0,
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        "allowExpressions": true
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 120,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreComments": true
+      }
+    ],
+    "@typescript-eslint/comma-dangle": [
+      "error",
+      {
+        "arrays": "only-multiline",
+        "objects": "only-multiline",
+        "imports": "only-multiline",
+        "exports": "only-multiline",
+        "functions": "never"
+      }
+    ],
+    "newline-after-var": "error",
+    "@typescript-eslint/no-unused-vars": "off",
+    "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": ["error", { "considerQueryString": true }],
+
+    "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          // Side effect imports.
+          ["^\\u0000"],
+          // react
+          // Packages.
+          // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
+          [
+            "^react$",
+            "^react-dom$",
+            "^react-router$",
+            "^react-router-dom$",
+            "^@?\\w"
+          ],
+          // Config import
+          ["^config"],
+          ["^constants"],
+          ["^store"],
+          // Absolute imports and Relative imports.
+          ["^services(/.*|$)"],
+          ["^helpers(/.*|$)"],
+          ["^modules(/.*|$)"],
+          ["^containers(/.*|$)"],
+          ["^layouts(/.*|$)"],
+          ["^pages(/.*|$)"],
+          ["^components(/.*|$)"],
+          ["^translations(/.*|$)"],
+          ["^assets(/.*|$)"],
+          // Parent imports. Put `..` last.
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+          // Other relative imports. Put same-folder imports and `.` last.
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+          // images imports
+          ["^.+\\.(svg|jpg|png)$"],
+          // Style imports.
+          ["^.+\\.s?css$"],
+          ["^"]
+        ]
+      }
+    ],
+
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "leadingUnderscore": "require",
+        "prefix": ["I"],
+        "format": ["UPPER_CASE", "StrictPascalCase"]
+      }
+    ],
+
+    "import/no-anonymous-default-export": [
+      "error",
+      {
+        "allowArray": false,
+        "allowArrowFunction": false,
+        "allowAnonymousClass": false,
+        "allowAnonymousFunction": false,
+        "allowCallExpression": true, // The true value here is for backward compatibility
+        "allowLiteral": false,
+        "allowObject": false
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}
