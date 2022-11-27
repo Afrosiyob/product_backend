@@ -1,77 +1,80 @@
 import { Request, Response } from "express";
 
-import log from "../../../core/utils/log";
 import {
   CreateProductInput,
+  GetProductInput,
   UpdateProductInput,
-} from "../schemas/modules/types";
+} from "../schemas/components/types";
 import {
   createProduct,
   deleteProduct,
   findAndUpdateProduct,
   findProduct,
-  getAllProduct,
-} from "../services";
+  findProducts,
+} from "../services/product.service";
 
 export const createProductHandler = async (
   req: Request<{}, {}, CreateProductInput["body"]>,
   res: Response
-): Promise<void> => {
+): Promise<object> => {
   const body = req.body;
   const product = await createProduct({ ...body });
 
-  res.send(product);
+  return res.send(product);
 };
 
 export const updateProductHandler = async (
   req: Request<UpdateProductInput["params"]>,
   res: Response
-): Promise<void> => {
+): Promise<object> => {
   const productId = req.params.productId;
 
   const update = req.body;
 
   const product = await findProduct({ productId });
 
-  if (product == null) res.sendStatus(404);
+  if (product == null) return res.sendStatus(404);
 
   const updatedProduct = await findAndUpdateProduct({ productId }, update, {
     new: true,
   });
 
-  res.send(updatedProduct);
+  return res.send(updatedProduct);
 };
 
 export const getProductHandler = async (
-  req: Request<UpdateProductInput["params"]>,
+  req: Request<GetProductInput["params"]>,
   res: Response
-): Promise<void> => {
+): Promise<object> => {
   const productId = req.params.productId;
 
   const product = await findProduct({ productId });
 
-  if (product == null) res.sendStatus(404);
+  if (product == null) return res.sendStatus(404);
 
-  res.send(product);
+  return res.send({ product });
 };
 
-export const getAllProductHandler = async (): Promise<void> => {
-  const products = getAllProduct();
+export const getAllProductHandler = async (
+  req: Request,
+  res: Response
+): Promise<object> => {
+  const products = await findProducts({ user: "admin" });
 
-  log.info(products);
+  return res.send(products);
 };
 
 export const deleteProductHandler = async (
   req: Request<UpdateProductInput["params"]>,
   res: Response
-): Promise<void> => {
+): Promise<object> => {
   const productId = req.params.productId;
 
   const product = await findProduct({ productId });
 
-  if (product == null) res.sendStatus(404);
+  if (product == null) return res.sendStatus(404);
 
   await deleteProduct({ productId });
 
-  res.sendStatus(200);
+  return res.sendStatus(200);
 };

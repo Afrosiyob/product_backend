@@ -1,7 +1,7 @@
 import { object } from "zod";
 
-import { params } from "./modules/params";
-import { payload } from "./modules/payload";
+import { params } from "./components/params";
+import { payload } from "./components/payload";
 
 export const createProductSchema = object({
   ...payload,

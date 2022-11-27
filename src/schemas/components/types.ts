@@ -5,7 +5,7 @@ import {
   deleteProductSchema,
   getProductSchema,
   updateProductSchema,
-} from "../index";
+} from "../product.schema";
 
 export type CreateProductInput = TypeOf<typeof createProductSchema>;
 export type GetProductInput = TypeOf<typeof getProductSchema>;

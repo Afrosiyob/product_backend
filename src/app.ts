@@ -1,15 +1,13 @@
+import "dotenv/config";
+
 import cors from "cors";
-import * as dotenv from "dotenv";
 import express, { NextFunction, Request, Response } from "express";
 
-import { connectDB, connectDBConfig } from "./core/db";
-import log from "./core/utils/log";
-import { router } from "./routes";
+import { connectDB } from "./db/db.connect";
+import { router } from "./routes/app.router";
+import log from "./utils/log.util";
 
-dotenv.config();
 const app = express();
-// const PORT = process.env.PORT;
-// const LOCALE_ADDRESS = process.env.LOCAL_ADDRESS;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,6 +27,8 @@ app.use(
 app.listen(8080, "0.0.0.0", async function () {
   log.info(`App is running at http://localhost:${8080} `);
   await connectDB();
-  await connectDBConfig();
+
   router(app);
 });
+
+// process.exit(1);

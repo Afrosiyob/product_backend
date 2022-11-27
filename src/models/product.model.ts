@@ -1,7 +1,14 @@
 import * as mongoose from "mongoose";
 import { v4 as uuidv4 } from "uuid";
 
-import { _IProductDocument } from "./modules/interfaces";
+export interface _IProductDocument extends mongoose.Document {
+  user: string;
+  title: string;
+  description: string;
+  price: number;
+  createAt: Date;
+  updateAt: Date;
+}
 
 const productSchema = new mongoose.Schema(
   {
@@ -9,7 +16,11 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      default: () => `product_${uuidv4()}`,
+      default: () => uuidv4(),
+    },
+    user: {
+      type: String,
+      default: "admin",
     },
     title: { type: String, required: true },
     description: { type: String, required: true },
@@ -21,6 +32,6 @@ const productSchema = new mongoose.Schema(
 );
 
 export const Product = mongoose.model<_IProductDocument>(
-  "Product",
+  "products",
   productSchema
 );

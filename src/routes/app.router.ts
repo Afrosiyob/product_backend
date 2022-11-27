@@ -4,16 +4,17 @@ import { Express } from "express";
 import {
   createProductHandler,
   deleteProductHandler,
+  getAllProductHandler,
   getProductHandler,
   updateProductHandler,
-} from "../components/product/controllers";
+} from "../controllers/product.controller";
 import {
   createProductSchema,
   deleteProductSchema,
   getProductSchema,
   updateProductSchema,
-} from "../components/product/schemas";
-import { validate } from "../core/validations";
+} from "../schemas/product.schema";
+import { validate } from "../validations/api.validation";
 
 export function router(app: Express): void {
   app.post(
@@ -26,7 +27,14 @@ export function router(app: Express): void {
     validate(updateProductSchema),
     updateProductHandler
   );
-  app.get("/api/v1/product/:id", validate(getProductSchema), getProductHandler);
+
+  app.get("/api/v1/product", getAllProductHandler);
+
+  app.get(
+    "/api/v1/product/:productId",
+    validate(getProductSchema),
+    getProductHandler
+  );
   app.delete(
     "/api/v1/product/:id",
     validate(deleteProductSchema),
