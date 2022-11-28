@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { Express } from "express";
+import { Express, Request, Response } from "express";
 
 import {
   createProductHandler,
@@ -17,13 +17,17 @@ import {
 import { validate } from "../validations/api.validation";
 
 export function router(app: Express): void {
+  app.get("/", (req: Request, res: Response) => {
+    res.send("hello world");
+  });
+
   app.post(
     "/api/v1/product",
     validate(createProductSchema),
     createProductHandler
   );
   app.put(
-    "/api/v1/product/:id",
+    "/api/v1/product/:productId",
     validate(updateProductSchema),
     updateProductHandler
   );
@@ -36,7 +40,7 @@ export function router(app: Express): void {
     getProductHandler
   );
   app.delete(
-    "/api/v1/product/:id",
+    "/api/v1/product/:productId",
     validate(deleteProductSchema),
     deleteProductHandler
   );

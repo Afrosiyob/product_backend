@@ -5,6 +5,9 @@
   "repository": "https://github.com/Afrosiyob/product_backend.git",
   "author": "Afrosiyob <45900728+Afrosiyob@users.noreply.github.com>",
   "license": "MIT",
+  "engines": {
+    "node": "18.12.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
@@ -34,7 +37,9 @@
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "tsc",
+    "start": "node build/app.js"
   },
   "dependencies": {
     "@types/config": "^3.3.0",
