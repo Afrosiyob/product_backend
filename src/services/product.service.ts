@@ -18,6 +18,11 @@ export const findProduct = async (
   options: QueryOptions = { lean: true }
 ): Promise<object | null> => await Product.findOne(query, {}, options);
 
+export const findProductAndDeleteProduct = async (
+  query: FilterQuery<_IProductDocument>,
+  options: QueryOptions = { lean: true }
+): Promise<object | null> => await Product.findOneAndDelete(query, options);
+
 export const findProducts = async (
   query: FilterQuery<_IProductDocument>
 ): Promise<any> => await Product.find(query).lean();

@@ -49,6 +49,7 @@
     "@types/mongoose": "^5.11.97",
     "@types/nanoid": "^3.0.0",
     "@types/pino-pretty": "^5.0.0",
+    "concurrently": "^7.6.0",
     "cors": "^2.8.5",
     "dayjs": "^1.11.6",
     "dotenv": "^16.0.3",

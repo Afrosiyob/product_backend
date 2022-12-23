@@ -52,7 +52,7 @@ export const getProductHandler = async (
 
   if (product == null) return res.sendStatus(404);
 
-  return res.send({ product });
+  return res.send(product);
 };
 
 export const getAllProductHandler = async (
